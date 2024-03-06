@@ -211,6 +211,7 @@ function makeSliders(device) {
 function makeInportForm(device) {
     const idiv = document.getElementById("rnbo-inports");
     const inportSelect = document.getElementById("inport-select");
+    const inports = messages.filter(message => message.type === RNBO.MessagePortType.Inport);
     const inportText = document.getElementById("inport-text");
     const inportForm = document.getElementById("inport-form");
     let inportTag = null;
@@ -218,8 +219,7 @@ function makeInportForm(device) {
     // Device messages correspond to inlets/outlets or inports/outports
     // You can filter for one or the other using the "type" of the message
     const messages = device.messages;
-    const inports = messages.filter(message => message.type === RNBO.MessagePortType.Inport);
-
+    
     if (inports.length === 0) {
         idiv.removeChild(document.getElementById("inport-form"));
         return;
@@ -326,7 +326,6 @@ function makeMIDIKeyboard(device) {
         
             device.scheduleEvent(noteOnEvent);
             device.scheduleEvent(noteOffEvent);
-
             key.classList.add("clicked");
         });
 
